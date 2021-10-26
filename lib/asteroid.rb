@@ -48,18 +48,16 @@ class Asteroid
   def define_lines(points)
     lines = []
     points.each_with_index do |point, index|
-      if index + 1 == points.count
-        x2 = points[0].x
-        y2 = points[0].y
-      else
-        x2 = points[index + 1].x
-        y2 = points[index + 1].y
-      end
+      point2 = if index + 1 == points.count
+                 points[0]
+               else
+                 points[index + 1]
+               end
       lines.push(
-        Line.new({ x1: point.x, y1: point.y,
-                   x2: x2, y2: y2,
-                   width: 1,
-                   color: 'white' })
+        LineVector.new({ point1: point,
+                         point2: point2,
+                         width: 1,
+                         color: 'white' })
       )
     end
     lines

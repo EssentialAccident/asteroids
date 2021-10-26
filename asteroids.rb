@@ -6,6 +6,7 @@ require 'vector2d'
 
 # Require internal files
 require_relative 'lib/asteroid'
+require_relative 'lib/line_vector'
 
 # Setting up the window
 set({ title: 'Asteroids',
