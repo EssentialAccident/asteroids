@@ -13,6 +13,10 @@ class Asteroid
     @radius = radius
     @position = position
     @outline = outline(rand(MIN_OUTLINE_DIVISIONS..MAX_OUTLINE_DIVISIONS))
+    @velocity = Vector2D.new(
+      rand(-MAX_VELOCITY..MAX_VELOCITY),
+      rand(-MAX_VELOCITY..MAX_VELOCITY)
+    )
   end
 
   def outline(divisions)
@@ -22,9 +26,11 @@ class Asteroid
     define_lines(points)
   end
 
-  def update; end
-
-  def draw; end
+  def update
+    @outline.each do |line|
+      line.add_vector(@velocity)
+    end
+  end
 
   private
 
