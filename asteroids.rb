@@ -9,7 +9,7 @@ require_relative 'lib/asteroid'
 require_relative 'lib/line_vector'
 
 # Constants for the game
-MAX_VELOCITY = 7.0
+MAX_VELOCITY = 5.0
 WINDOW_WIDTH = 1024
 WINDOW_HEIGHT = 768
 
@@ -23,9 +23,9 @@ set({ title: 'Asteroids',
 
 # Setting up asteroids
 asteroids = []
-15.times do
-  position = Vector2D.new(rand(Window.width), rand(Window.height))
-  asteroids.push(Asteroid.new(position))
+
+5.times do
+  asteroids.push(Asteroid.new)
 end
 
 update do

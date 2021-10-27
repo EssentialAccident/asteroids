@@ -9,14 +9,14 @@ class Asteroid
   # @radius The radius of the asteroid
   # @position The position for the center of the asteroid
   # @outline Array that contains the lines of the asteroid
-  def initialize(position, radius = 50)
+  def initialize(radius = 50)
     @radius = radius
-    @position = position
-    @outline = outline(rand(MIN_OUTLINE_DIVISIONS..MAX_OUTLINE_DIVISIONS))
+    @outline = outline(rand(MIN_OUTLINE_DIVISIONS...MAX_OUTLINE_DIVISIONS))
     @velocity = Vector2D.new(
       rand(-MAX_VELOCITY...MAX_VELOCITY),
       rand(-MAX_VELOCITY...MAX_VELOCITY)
     )
+    origin_direction
   end
 
   def outline(divisions)
@@ -46,14 +46,15 @@ class Asteroid
 
   # Defines the points of the sides of the asteroid
   def define_points(divisions, angle_tick)
+    position = Vector2D.new(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2)
     points = []
     divisions.times do |i|
       x_diviation = rand(-MAX_DIVIATION..MAX_DIVIATION)
       y_diviation = rand(-MAX_DIVIATION..MAX_DIVIATION)
       points.push(
         Vector2D.new(
-          @position.x + x_diviation + (@radius * Math.cos(angle_tick * i)),
-          @position.y + y_diviation + (@radius * Math.sin(angle_tick * i))
+          position.x + x_diviation + (@radius * Math.cos(angle_tick * i)),
+          position.y + y_diviation + (@radius * Math.sin(angle_tick * i))
         )
       )
     end
@@ -77,5 +78,23 @@ class Asteroid
       )
     end
     lines
+  end
+
+  # It stablishes with direction the asteroid will show up on the screen
+  def origin_direction
+    direction = %i[top bottom right left]
+    case direction.sample
+    when :top
+      vector = Vector2D.new(rand(WINDOW_WIDTH), WINDOW_HEIGHT + 1000)
+    when :bottom
+      vector = Vector2D.new(rand(WINDOW_WIDTH), -1000)
+    when :left
+      vector = Vector2D.new(-1000, rand(WINDOW_HEIGHT))
+    when :right
+      vector = Vector2D.new(WINDOW_WIDTH + 1000, rand(WINDOW_HEIGHT))
+    end
+    @outline.each do |line|
+      line.add_vector(vector)
+    end
   end
 end
