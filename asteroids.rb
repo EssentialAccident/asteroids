@@ -10,11 +10,13 @@ require_relative 'lib/line_vector'
 
 # Constants for the game
 MAX_VELOCITY = 7.0
+WINDOW_WIDTH = 1024
+WINDOW_HEIGHT = 768
 
 # Setting up the window
 set({ title: 'Asteroids',
-      width: 1024,
-      height: 768,
+      width: WINDOW_WIDTH,
+      height: WINDOW_HEIGHT,
       background: 'black' })
 
 # Setting up the game

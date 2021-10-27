@@ -29,6 +29,16 @@ class Asteroid
   def update
     @outline.each do |line|
       line.add_vector(@velocity)
+      if (line.x1 < 0 && line.x2 < 0) ||
+         (line.x1 > WINDOW_WIDTH && line.x2 > WINDOW_WIDTH)
+        line.x1 = line.x1 % WINDOW_WIDTH
+        line.x2 = line.x2 % WINDOW_WIDTH
+      end
+      next unless (line.y1 < 0 && line.y2 < 0) ||
+                  (line.y1 > WINDOW_HEIGHT && line.y2 > WINDOW_HEIGHT)
+
+      line.y1 = line.y1 % WINDOW_HEIGHT
+      line.y2 = line.y2 % WINDOW_HEIGHT
     end
   end
 
