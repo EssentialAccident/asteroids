@@ -9,7 +9,7 @@ require_relative 'lib/asteroid'
 require_relative 'lib/line_vector'
 
 # Constants for the game
-MAX_VELOCITY = 1.0
+MAX_VELOCITY = 7.0
 
 # Setting up the window
 set({ title: 'Asteroids',

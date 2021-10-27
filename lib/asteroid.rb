@@ -14,8 +14,8 @@ class Asteroid
     @position = position
     @outline = outline(rand(MIN_OUTLINE_DIVISIONS..MAX_OUTLINE_DIVISIONS))
     @velocity = Vector2D.new(
-      rand(-MAX_VELOCITY..MAX_VELOCITY),
-      rand(-MAX_VELOCITY..MAX_VELOCITY)
+      rand(-MAX_VELOCITY...MAX_VELOCITY),
+      rand(-MAX_VELOCITY...MAX_VELOCITY)
     )
   end
 
