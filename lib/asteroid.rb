@@ -42,6 +42,10 @@ class Asteroid
     end
   end
 
+  def remove
+    @outline.map(&:remove)
+  end
+
   private
 
   # Defines the points of the sides of the asteroid
