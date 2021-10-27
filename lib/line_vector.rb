@@ -14,6 +14,13 @@ class LineVector < Ruby2D::Line
     super opts
   end
 
+  def add_vector(vector)
+    @x1 += vector.x
+    @y1 += vector.y
+    @x2 += vector.x
+    @y2 += vector.y
+  end
+
   # Getter for point1
   def point1
     Vector2D.new(@x1, @y1)
