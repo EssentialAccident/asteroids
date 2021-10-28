@@ -5,8 +5,10 @@ require 'ruby2d'
 require 'vector2d'
 
 # Require internal files
-require_relative 'lib/asteroid'
 require_relative 'lib/line_vector'
+require_relative 'lib/triangle_vector'
+require_relative 'lib/asteroid'
+require_relative 'lib/player'
 
 # Constants for the game
 MAX_VELOCITY = 5.0
@@ -24,9 +26,8 @@ set({ title: 'Asteroids',
 # Setting up asteroids
 asteroids = []
 
-5.times do
-  asteroids.push(Asteroid.new)
-end
+# Setting up player
+player = Player.new
 
 update do
   asteroids.map(&:update)
