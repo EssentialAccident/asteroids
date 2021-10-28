@@ -14,10 +14,9 @@ class Player
           point1: points[0],
           point2: points[1],
           point3: points[2],
-          color: 'white'
+          color: 'silver'
         }
       )
-    puts @triangle.x1
   end
 
   private
