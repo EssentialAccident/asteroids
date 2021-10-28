@@ -6,7 +6,7 @@ class Player
   def initialize
     @center = Vector2D.new(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2)
     @angle = 0
-    @radius = 30
+    @radius = 15
     points = calculate_points
     @triangle =
       TriangleVector.new(
@@ -14,10 +14,10 @@ class Player
           point1: points[0],
           point2: points[1],
           point3: points[2],
-          color: 'white'
+          color: 'silver',
+          opacity: 0.5
         }
       )
-    puts @triangle.x1
   end
 
   private
