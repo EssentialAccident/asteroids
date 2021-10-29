@@ -29,6 +29,26 @@ asteroids = []
 # Setting up player
 player = Player.new
 
+# Events
+on :key_held do |event|
+  case event.key
+  when 'left' || 'a'
+    player.turn(:left)
+  when 'rigth' || 'd'
+    player.turn(:right)
+  when 'up' || 'w'
+    player.accelerate
+  end
+end
+
+on :key_down do |event|
+  case event.key
+  when 'escape'
+    Window.close
+  end
+end
+
+# Game Loop
 update do
   asteroids.map(&:update)
 end
