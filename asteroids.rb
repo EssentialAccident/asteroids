@@ -31,12 +31,13 @@ player = Player.new
 
 # Events
 on :key_held do |event|
+  puts event
   case event.key
-  when 'left' || 'a'
+  when 'left', 'a'
     player.turn(:left)
-  when 'rigth' || 'd'
+  when 'right', 'd'
     player.turn(:right)
-  when 'up' || 'w'
+  when 'up', 'w'
     player.accelerate
   end
 end
@@ -51,6 +52,7 @@ end
 # Game Loop
 update do
   asteroids.map(&:update)
+  player.update
 end
 
 show
