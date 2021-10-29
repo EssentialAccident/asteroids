@@ -31,7 +31,6 @@ player = Player.new
 
 # Events
 on :key_held do |event|
-  puts event
   case event.key
   when 'left', 'a'
     player.turn(:left)
