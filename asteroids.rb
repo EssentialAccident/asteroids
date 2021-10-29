@@ -11,7 +11,7 @@ require_relative 'lib/asteroid'
 require_relative 'lib/player'
 
 # Constants for the game
-MAX_VELOCITY = 5.0
+MAX_VELOCITY = 7.0
 WINDOW_WIDTH = 1024
 WINDOW_HEIGHT = 768
 

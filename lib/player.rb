@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-# I manages the player
+# It manages the player
 class Player
   ANGLE = 120 * Math::PI / 180
   ANGLE_VELOCITY = 3 * Math::PI / 180
-  MAX_ACCELERATION = 1
+  MAX_ACCELERATION = 0.07
   def initialize
     @center = Vector2D.new(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2)
     @angle = 0
@@ -16,14 +16,15 @@ class Player
 
   def update
     @triangle = make_triangle
-    @velocity = @velocity.add_vector(@acceleration)
-    @center = @center.add_vector(@velocity.limit(MAX_VELOCITY))
+    @velocity = @velocity.add_vector(@acceleration).limit(MAX_VELOCITY)
+    @center = @center.add_vector(@velocity)
+    puts "#{@velocity.magnitude} | #{@acceleration.magnitude}"
     wrap_window
     @acceleration = Vector2D.zero
   end
 
   def accelerate
-    @acceleration = Vector2D.from_radians(@angle)
+    @acceleration = Vector2D.from_radians(@angle).limit(MAX_ACCELERATION)
   end
 
   def turn(direction)
@@ -55,11 +56,11 @@ class Player
   def calculate_points
     points = []
     3.times do |count|
-      if count == 0
+      if count.zero?
         points.push(
           Vector2D.new(
-            @center.x + ((@radius + 10) * Math.cos((ANGLE * count) + @angle)),
-            @center.y + ((@radius + 10) * Math.sin((ANGLE * count) + @angle))
+            @center.x + ((@radius + 25) * Math.cos((ANGLE * count) + @angle)),
+            @center.y + ((@radius + 25) * Math.sin((ANGLE * count) + @angle))
           )
         )
       else
