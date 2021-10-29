@@ -25,6 +25,11 @@ set({ title: 'Asteroids',
 
 # Setting up asteroids
 asteroids = []
+7.times do
+  asteroids.push(
+    Asteroid.new
+  )
+end
 
 # Setting up player
 player = Player.new
