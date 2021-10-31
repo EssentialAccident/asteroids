@@ -3,7 +3,7 @@
 # Creates the rocks to be the enemies in the game
 class Asteroid
   MIN_OUTLINE_DIVISIONS = 5
-  MAX_OUTLINE_DIVISIONS = 15
+  MAX_OUTLINE_DIVISIONS = 10
   MAX_DIVIATION = 20
 
   # @radius The radius of the asteroid
@@ -16,7 +16,10 @@ class Asteroid
       rand(-MAX_VELOCITY...MAX_VELOCITY),
       rand(-MAX_VELOCITY...MAX_VELOCITY)
     )
-    origin_direction
+    position = origin_direction
+    @outline.each do |line|
+      line.add_vector(position)
+    end
   end
 
   def outline(divisions)
@@ -89,16 +92,13 @@ class Asteroid
     direction = %i[top bottom right left]
     case direction.sample
     when :top
-      vector = Vector2D.new(rand(WINDOW_WIDTH), WINDOW_HEIGHT + 1000)
+      Vector2D.new(rand(WINDOW_WIDTH), WINDOW_HEIGHT + 1000)
     when :bottom
-      vector = Vector2D.new(rand(WINDOW_WIDTH), -1000)
+      Vector2D.new(rand(WINDOW_WIDTH), -1000)
     when :left
-      vector = Vector2D.new(-1000, rand(WINDOW_HEIGHT))
+      Vector2D.new(-1000, rand(WINDOW_HEIGHT))
     when :right
-      vector = Vector2D.new(WINDOW_WIDTH + 1000, rand(WINDOW_HEIGHT))
-    end
-    @outline.each do |line|
-      line.add_vector(vector)
+      Vector2D.new(WINDOW_WIDTH + 1000, rand(WINDOW_HEIGHT))
     end
   end
 end
