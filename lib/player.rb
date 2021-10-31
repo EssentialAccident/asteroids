@@ -18,7 +18,6 @@ class Player
     @triangle = make_triangle
     @velocity = @velocity.add_vector(@acceleration).limit(MAX_VELOCITY)
     @center = @center.add_vector(@velocity)
-    puts "#{@velocity.magnitude} | #{@acceleration.magnitude}"
     wrap_window
     @acceleration = Vector2D.zero
   end
