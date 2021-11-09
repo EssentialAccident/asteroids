@@ -16,9 +16,9 @@ class Asteroid
       rand(-MAX_VELOCITY...MAX_VELOCITY),
       rand(-MAX_VELOCITY...MAX_VELOCITY)
     )
-    position = origin_direction
+    @center = origin_direction
     @outline.each do |line|
-      line.add_vector(position)
+      line.add_vector(@center)
     end
   end
 
@@ -30,6 +30,7 @@ class Asteroid
   end
 
   def update
+    @center.add_vector(@velocity)
     @outline.each do |line|
       line.add_vector(@velocity)
       if (line.x1 < 0 && line.x2 < 0) ||
